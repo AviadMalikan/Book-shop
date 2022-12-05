@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightgray;
+    text-align: center;
+    color: rgb(63, 63, 63);
+    overflow-x: hidden;
+
+}
+
+h1 {
+    background-color: rgb(121, 121, 121);
+    color: lightgray;
+    border-radius: 15px;
+    padding: 5px;
+    width: 80vw;
+    margin: auto;
+}
+
+.book-filter {
+    padding: 10px;
+    padding-bottom: 40px;
+    margin: 30px;
+    border-radius: 10px;
+    background-color: rgb(163, 163, 163);
+}
+
+.filter-text {
+    margin-top: 20px;
+}
+
+table {
+    margin: auto;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 7px;
+    width: 150px;
+}
+
+th.action {
+    min-width: 200px;
+}
+
+th.title {
+    min-width: 250px;
+}
+
+.modal {
+    background-color: gray;
+    padding: 10px;
+    position: absolute;
+    top: -100%;
+    right: 5px;
+    transition: top .5s;
+    height: auto;
+    /* min-height: 50vh; */
+    width: 100px;
+    min-width: 300px;
+    text-align: center;
+}
+
+.open {
+    top: 5px;
+}
+
+button {
+    border-radius: 10px;
+    width: 25px;
+    border: 1px gray solid;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button.close-modal,
+button.add-book {
+    width: auto;
+    padding: 10px;
+}
+
+button.action {
+    /* border: 0px; */
+    color: rgb(163, 163, 163);
+    border-radius: 3px;
+    padding: 5px;
+    width: 60px;
+}
+
+.update {
+    background-color: rgb(186, 140, 94);
+}
+
+.update:hover {
+    background-color: orange;
+}
+
+.delete {
+    background-color: rgb(186, 94, 94);
+}
+
+.delete:hover {
+    background-color: rgb(218, 56, 56);
+}
+
+.read {
+    background-color: rgb(100, 162, 180);
+}
+
+.read:hover {
+    background-color: rgb(0, 195, 255);
+}
+
+.user-msg {
+    position: fixed;
+    bottom: -100px;
+    right: 10px;
+    height: 10px;
+    background-color: rgb(255, 0, 0);
+    padding: 10px;
+    transition: bottom .5s;
+}
+
+.user-msg.open {
+    bottom: 0px;
+}
+
+.page{
+    margin-top: 20px;
+    width: 100px;
+    height: 25px;
+}

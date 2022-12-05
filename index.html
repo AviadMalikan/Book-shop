@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asita Book ?</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="onInit()">
+    <h1>Book app</h1>
+    <section class="book-filter">
+        <h2>Filter:</h2>
+        <label class="filter-rate">
+            Min rate:
+            <input type="range" min="0" max="5" value="0" class="filter-rate-range"
+                onchange="this.title=this.value;onSetFilterBy({minRate: this.value})">
+        </label>
+        <label class="filter-price">
+            Max Price:
+            <input type="range" min="0" max="100" value="100" class="filter-price-range"
+                onchange="this.title=this.value;onSetFilterBy({maxPrice: this.value})">
+        </label>
+        <div class="filter-text">
+            Looking for something specific ?
+            <input type="text" placeholder="Enter book name" class="filter-name-box"
+                onchange="onSetFilterBy({name: this.value})">
+        </div>
+    </section>
+
+    <button title="Add Book" class="add-book" onclick=" onAddBook()">New Book</button>
+    <section class="pages">
+        <!-- <button class="page prevPage" onclick="onNextOrPrevPage(false)">Perv Page</button>
+        <button class="page nextPage" onclick="onNextOrPrevPage(true)">Next Page</button> -->
+        <button class="page prevPage" onclick="onPrevPage(this)">Perv Page</button>
+        <button class="page nextPage" onclick="onNextPage(this) ">Next Page</button>
+    </section>
+    <section class="books-container">
+        <table>
+        </table>
+        <div class="modal">
+            <h3></h3>
+            <h4>Price:<span></span></h4>
+            <p></p>
+            <h5></h5>
+            <button class="close-modal" onclick="onCloseRead()">Close</button>
+        </div>
+    </section>
+
+
+    <div class="user-msg"></div>
+
+    <script src="js/service/utils.service.js"></script>
+    <script src="js/service/storage.service.js"></script>
+    <script src="js/service/book.service.js"></script>
+    <script src="js/book.controller.js"></script>
+</body>
+
+</html>
