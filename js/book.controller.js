@@ -3,23 +3,22 @@
 
 function onInit() {
     renderFilterByQueryStringParam()
+    doTrans()
     renderBooks()
 }
 
 function onNextPage(elButton) {
     var page = nextPage()
-    if (!page) {
-        elButton.disabled = true
-
-    } else elButton.disabled = false
+    if (!page) return
 
     renderBooks()
 }
 function onPrevPage(elButton) {
     var page = prevPage()
-    if (!page) {
-        elButton.disabled = true
-    } else elButton.disabled = false
+    if (!page) return
+    // if (!page) {
+    //     elButton.disabled = true
+    // } else elButton.disabled = false
     renderBooks()
 }
 
@@ -27,16 +26,20 @@ function onPrevPage(elButton) {
 
 function renderBooks() {
     const books = getBooks()
-    var tableHeaderHTML = `<th>ID</th>    <th class="title">Title</th>
-    <th>Price</th>     <th class="action">Actions</th>  `
+    var tableHeaderHTML = `<th data-trans='id'>ID</th>
+<th class="title" data-trans='book-names'>Title</th>
+<th data-trans='price'>Price</th>  
+<th class="rate" data-trans='rate'>rate</th> 
+<th class="action" data-trans='actions' >Actions</th>  `
     var strHTMLs = books.map(book => `<tr>
     <td class"table-id">${book.id}</td>
     <td class"table-book">${book.name}</td>
     <td class"table-price" >${book.price}$</td>
+    <td class"table-price" >${book.rate ? '⭐'.repeat(book.rate) : '⚫'} </td>
     <td>
-        <button class="read action" onclick="onReadBook(${book.id})">Read</button>
-        <button class="update action" onclick="onUpdateBook(${book.id})">update</button>
-        <button class="delete action" onclick="onDeleteBook(${book.id})">delete</button>
+        <button class="read action" data-trans='read' onclick="onReadBook(${book.id})">Read</button>
+        <button class="update action" data-trans='update' onclick="onUpdateBook(${book.id})">update</button>
+        <button class="delete action" data-trans='delete' onclick="onDeleteBook(${book.id})">delete</button>
     </td>
     </tr > `).join('')
     const elTable = document.querySelector('table')
@@ -73,7 +76,7 @@ function onReadBook(bookId) {
 
     var elModal = document.querySelector('.modal')
     elModal.querySelector('h3').innerText = book.name
-    elModal.querySelector('h4 span').innerText = book.price
+    elModal.querySelector('h4 .price').innerText = getformatCurrency(book.price)
     elModal.querySelector('p').innerText = book.detail
 
     var strHTML = `
@@ -143,4 +146,15 @@ function onSetFilterBy(filterBy) {
         window.location.pathname + queryStringParams
 
     window.history.pushState({ path: newUrl }, '', newUrl)
+}
+
+
+function onSetLang(lang) {
+    setLang(lang)
+
+    if (lang === 'he') document.body.classList.add('rtl')
+    else document.body.classList.remove('rtl')
+
+    renderBooks()
+    doTrans()
 }
